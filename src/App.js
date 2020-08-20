@@ -7,6 +7,7 @@ import {BrowserRouter,Route,Switch} from 'react-router-dom'
 import './App.css';
 import LandingPage from './components/services'
 
+
 function App() {
     const [value ,setValue]=useState(0)
   return (
@@ -15,7 +16,7 @@ function App() {
      <Header value={value} setValue={setValue}  />
      <Switch>
      <Route exact path="/" component={()=><div style={{height:"350px"}}>Home</div>} /> 
-     <Route exact path="/services" component={()=><div>services</div>} /> 
+     <Route exact path="/services" component={LandingPage} /> 
      <Route exact path="/custom-software" component={LandingPage} /> 
      <Route exact path="/mobile-apps" component={()=><div>mobile apps</div>} /> 
      <Route exact path="/websites" component={()=><div>websites</div>} /> 
