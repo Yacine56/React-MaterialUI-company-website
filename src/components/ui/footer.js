@@ -12,7 +12,8 @@ import twitter from '../../assets/twitter.svg'
 const usetStyle=makeStyles(theme=>({
        footer:{
            backgroundColor:theme.palette.common.blue,
-           
+           height:"auto",
+           width:"auto"
          
        },
        footerLogo:{
@@ -29,7 +30,8 @@ const usetStyle=makeStyles(theme=>({
         },
          footerContainer:{
              position:"absolute",
-             zIndex:1302
+             zIndex:1302,
+             
          },
 
         footerLinks:{
