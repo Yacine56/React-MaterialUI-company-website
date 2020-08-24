@@ -31,6 +31,21 @@ export default createMuiTheme({
             textTransform:"none",
             color:"white"
         },
+        h2:{
+            color:`white`,
+            fontFamily:"Raleway"
+            ,fontWeight:700,
+            fontSize:"3rem"
+            ,marginBottom:"0.5em"
+            
+        },
+        h3:{
+            color:`${arcBlue}`,
+            fontFamily:"Raleway"
+            ,fontWeight:700,
+         
+            
+        },
         h4:{
             color:`${arcBlue}`,
             fontFamily:"Raleway"
@@ -50,6 +65,13 @@ export default createMuiTheme({
             fontWeight:300,
             fontFamily:"Roboto",
             fontSize:"1.2rem"
+        },
+        subtitle2:{
+            color:`white`,
+            fontWeight:400,
+            fontFamily:"Roboto",
+            fontSize:"1.5rem"
+            ,marginBottom:"0.2em"
         },
        
     }  

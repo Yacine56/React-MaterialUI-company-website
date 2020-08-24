@@ -15,7 +15,7 @@ function App() {
      <ThemeProvider theme={theme}>
      <Header value={value} setValue={setValue}  />
      <Switch>
-     <Route exact path="/" component={()=><div style={{height:"350px"}}>Home</div>} /> 
+     <Route exact path="/"      component={LandingPage} /> 
      <Route exact path="/services" component={LandingPage} /> 
      <Route exact path="/custom-software" component={LandingPage} /> 
      <Route exact path="/mobile-apps" component={()=><div>mobile apps</div>} /> 
