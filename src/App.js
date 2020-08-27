@@ -5,8 +5,9 @@ import {ThemeProvider} from '@material-ui/styles'
 import theme from './components/ui/theme' 
 import {BrowserRouter,Route,Switch} from 'react-router-dom' 
 import './App.css';
-import LandingPage from './components/services'
-
+import LandingPage from './components/LandingPage'
+import Services from './components/services'
+import CustomSoftware from "./components/CustomSoftware"
 
 function App() {
     const [value ,setValue]=useState(0)
@@ -16,8 +17,8 @@ function App() {
      <Header value={value} setValue={setValue}  />
      <Switch>
      <Route exact path="/"      component={LandingPage} /> 
-     <Route exact path="/services" component={LandingPage} /> 
-     <Route exact path="/custom-software" component={LandingPage} /> 
+     <Route exact path="/services" component={Services} /> 
+     <Route exact path="/custom-software" component={CustomSoftware} /> 
      <Route exact path="/mobile-apps" component={()=><div>mobile apps</div>} /> 
      <Route exact path="/websites" component={()=><div>websites</div>} /> 
      <Route exact path="/revolution" component={()=><div>Revolution</div>} /> 
