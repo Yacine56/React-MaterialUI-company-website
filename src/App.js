@@ -8,6 +8,7 @@ import './App.css';
 import LandingPage from './components/LandingPage'
 import Services from './components/services'
 import CustomSoftware from "./components/CustomSoftware"
+import Contact from './components/contact'
 
 function App() {
     const [value ,setValue]=useState(0)
@@ -23,7 +24,7 @@ function App() {
      <Route exact path="/websites" component={()=><div>websites</div>} /> 
      <Route exact path="/revolution" component={()=><div>Revolution</div>} /> 
      <Route exact path="/about-us" component={()=><div>about-us</div>} /> 
-     <Route exact path="/contact-us" component={()=><div>contact-us</div>} /> 
+     <Route exact path="/contact-us" component={Contact} /> 
      <Route exact path="/estimate" component={()=><div>Estimate</div>} /> 
      </Switch> 
     <Footer value={value} setValue={setValue} />

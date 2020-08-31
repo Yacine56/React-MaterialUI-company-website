@@ -13,7 +13,11 @@ import stopWatch from "../assets/stopwatch.svg";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
 import documentsAnimation from "../animations/documentsAnimation/data";
-import ScaleAnimation from "../animations/scaleAnimation/data.json"
+import ScaleAnimation from "../animations/scaleAnimation/data.json";
+import root from "../assets/root1.jpg";
+import automaionAnimation from "../animations/automationAnimation/data.json";
+import uxAnimation from "../animations/uxAnimation/data";
+
 
 const useStyle = makeStyles((theme) => ({
   textContainer: {
@@ -29,12 +33,20 @@ const useStyle = makeStyles((theme) => ({
   image: {},
   imageContainer: {
     marginTop: "3em",
-    marginBottom:"3em"
+    marginBottom: "3em",
   },
- documents:{
-     maxWidth:"40em"
- }
-
+  documents: {
+    maxWidth: "40em",
+  },
+  rootImage:{
+      width:"40em",
+      height:"40em",
+   
+    [theme.breakpoints.down("sm")]:{
+      width:"18em",
+      height:"18em",
+    }
+  }
 }));
 
 const CustomSoftware = (props) => {
@@ -45,7 +57,7 @@ const CustomSoftware = (props) => {
     autoplay: true,
     animationData: documentsAnimation,
     renderSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
+      preserveAspectRatio: "xMidYMid slice",
     },
   };
   const ScaleOptions = {
@@ -56,9 +68,25 @@ const CustomSoftware = (props) => {
       preserveAspectratio: "xMidYMid slice",
     },
   };
+  const autoOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: automaionAnimation,
+    renderSettings: {
+      preserveAspectratio: "xMidYMid slice",
+    },
+  };
+  const uxOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: uxAnimation,
+    renderSettings: {
+      preserveAspectratio: "xMidYMid slice",
+    },
+  };
 
   return (
-    <Grid container direction="column" className={classes.container} >
+    <Grid container direction="column" className={classes.container}>
       <Grid item container spacing={4}>
         <Grid item>
           <IconButton component={Link} to="/services">
@@ -145,57 +173,155 @@ const CustomSoftware = (props) => {
         </Grid>
       </Grid>
       <Grid item container>
-          <Grid item container md>
-        <Grid item container direction="column" className={classes.documents} md>
-          <Grid item>
-            <Typography variant="h5">Degital Documents{" & "}Data</Typography>
+        <Grid item container md>
+          <Grid
+            item
+            container
+            direction="column"
+            className={classes.documents}
+            md
+          >
+            <Grid item>
+              <Typography variant="h5">Degital Documents{" & "}Data</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1" paragraph>
+                An electronic document is any electronic media content (other
+                than computer programs or system files) that is intended to be
+                used in either an electronic form or as printed output
+              </Typography>
+              <Typography variant="subtitle1" paragraph>
+                using electronic documents for final presentation instead of
+                paper has created the problem of multiple incompatible file
+                formats
+              </Typography>
+              <Typography variant="subtitle1" paragraph>
+                Even plain text computer files are not free from this problem —
+                e.g. under MS-DOS, most programs could not work correctly with
+                UNIX-style text files
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Typography variant="subtitle1" paragraph>
-              An electronic document is any electronic media content (other than
-              computer programs or system files) that is intended to be used in
-              either an electronic form or as printed output
+          <Grid item md>
+            <Lottie options={documentOptions} style={{ height: "20em" }} />
+          </Grid>
+        </Grid>
+        <Grid item container md>
+          <Grid
+            item
+            container
+            direction="column"
+            className={classes.documents}
+            md
+          >
+            <Grid item>
+              <Typography variant="h5">Scale</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1" paragraph>
+                An electronic document is any electronic media content (other
+                than computer programs or system files)
+              </Typography>
+              <Typography variant="subtitle1" paragraph>
+                using electronic documents for final presentation instead of
+                paper has created the problem of multiple incompatible file
+                formats
+              </Typography>
+              <Typography variant="subtitle1" paragraph>
+                Even plain text computer files are not free from this problem
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item md>
+            <Lottie options={ScaleOptions} style={{ height: "20em" }} />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item container style={{margin:"3em 0"}}  >
+        <Grid item container direction="column" alignItems="center">
+          <Grid item md > 
+          <img src={root} alt="cddf"  className={classes.rootImage}/>
+          </Grid>
+          <Grid item md className={classes.textContainer}>
+            <Typography variant="h4" align="center">Root-cause Analysis</Typography>
+            <Typography variant="subtitle1" paragraph align="center">
+              Root cause analysis can be traced to the broader field of total
+              quality management (TQM).
             </Typography>
-            <Typography variant="subtitle1" paragraph>
-              using electronic documents for final presentation instead of paper
-              has created the problem of multiple incompatible file formats
-            </Typography>
-            <Typography variant="subtitle1" paragraph>
-              Even plain text computer files are not free from this problem —
-              e.g. under MS-DOS, most programs could not work correctly with
-              UNIX-style text files 
+            <Typography variant="subtitle1" paragraph align="center">
+              Root cause analysis is part of a more general problem-solving
+              process and an integral part of continuous improvement. Because of
+              this, root cause analysis is one of the core building blocks in an
+              organization’s continuous improvement efforts
             </Typography>
           </Grid>
         </Grid>
+      </Grid>
+      <Grid item container>
+        <Grid item container md>
         <Grid item md>
-            <Lottie options={documentOptions} style={{height:"20em"}}/>
-        </Grid>
-       </Grid>
-       <Grid item container md>
-        <Grid item container direction="column" className={classes.documents} md>
-          <Grid item>
-            <Typography variant="h5">Scale</Typography>
+            <Lottie options={autoOptions} style={{ height: "20em" }} />
           </Grid>
-          <Grid item>
-            <Typography variant="subtitle1" paragraph>
-              An electronic document is any electronic media content (other than
-              computer programs or system files) 
-            </Typography>
-            <Typography variant="subtitle1" paragraph>
-              using electronic documents for final presentation instead of paper
-              has created the problem of multiple incompatible file formats
-            </Typography>
-            <Typography variant="subtitle1" paragraph>
-              Even plain text computer files are not free from this problem 
-               
-            </Typography>
+          <Grid
+            item
+            container
+            direction="column"
+            className={classes.documents}
+            md
+          >
+            <Grid item>
+              <Typography variant="h5" align="center">Automation</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1" paragraph align="center">
+                An electronic document is any electronic media content (other
+                than computer programs or system files) that is intended to be
+                used in either an electronic form or as printed output
+              </Typography>
+              <Typography variant="subtitle1" paragraph align="center">
+                using electronic documents for final presentation instead of
+                paper has created the problem of multiple incompatible file
+                formats
+              </Typography>
+              <Typography variant="subtitle1" paragraph align="center">
+                Even plain text computer files are not free from this problem —
+                e.g. under MS-DOS, most programs could not work correctly with
+                UNIX-style text files
+              </Typography>
+            </Grid>
+          </Grid>
+          
+        </Grid>
+        <Grid item container md style={{marginLeft:!matches && "2em"}} >
+          <Grid
+            item
+            container
+            direction="column"
+            className={classes.documents}
+            md
+          >
+            <Grid item>
+              <Typography variant="h5" align="center">User Experience</Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1" paragraph align="center">
+                An electronic document is any electronic media content (other
+                than computer programs or system files)
+              </Typography>
+              <Typography variant="subtitle1" paragraph align="center">
+                using electronic documents for final presentation instead of
+                paper has created the problem of multiple incompatible file
+                formats
+              </Typography>
+              <Typography variant="subtitle1" paragraph align="center">
+                Even plain text computer files are not free from this problem
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item md >
+            <Lottie options={uxOptions} style={{ height: "20em" }} />
           </Grid>
         </Grid>
-        <Grid item md>
-            <Lottie options={ScaleOptions} style={{height:"20em"}}/>
-        </Grid>
-       </Grid>
-       
       </Grid>
     </Grid>
   );
