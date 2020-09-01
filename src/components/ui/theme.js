@@ -26,7 +26,7 @@ export default createMuiTheme({
             fontSize:"1rem",        
         },
         button:{
-            fontFamily:"pacifico",
+            
             fontSize:"1rem",
             textTransform:"none",
             color:"white"
@@ -74,6 +74,26 @@ export default createMuiTheme({
             ,marginBottom:"0.2em"
         },
        
+    },
+    overrides:{
+        MuiInputLabel:{
+            root:{
+                
+                color:arcBlue,
+                fontSize:"1rem"
+            }
+        },
+        MuiInput:{
+            underline:{
+                "&:before":{
+                    borderBottom:`2px solid ${arcBlue}`,
+                    color:arcOrange
+                },
+                "&:after":{
+                    borderBottom:`3px solid ${arcOrange}`
+                }
+            }
+        }
     }  
 
 })
