@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
-import TexField from "@material-ui/core/TextField";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import background from "../assets/background.jpg";
 import phoneIcon from "../assets/phone.svg";
@@ -11,8 +11,11 @@ import Button from "@material-ui/core/Button";
 import sendIcon from "../assets/send.svg";
 import { Link } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
+
 import DialogTitle from "@material-ui/core/DialogTitle";
+import axios from "axios";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Snackbar from "@material-ui/core/Snackbar";
 
 const useStyle = makeStyles((theme) => ({
   secondGrid: {
@@ -48,7 +51,6 @@ const useStyle = makeStyles((theme) => ({
     color: "white",
     fontFamily: "Raleway",
     fontWeight: 600,
-    
   },
   button: {
     ...theme.typography.button,
@@ -58,48 +60,43 @@ const useStyle = makeStyles((theme) => ({
   },
 
   dialog: {
-    marginTop:"6em"
-    
+    marginTop: "6em",
   },
-  dialogform:{
-    margin:"3em ",
-    [theme.breakpoints.down('sm')]:{
-        margin:"0.5em"
-    }
-    
+  dialogform: {
+    margin: "3em ",
+    [theme.breakpoints.down("sm")]: {
+      margin: "0.5em",
+    },
   },
-  cancelButton:{
-    
+  cancelButton: {
     color: "white",
     fontFamily: "Raleway",
     fontWeight: 600,
     backgroundColor: "red",
-    "&:hover":{
+    "&:hover": {
       backgroundColor: "#DC143C",
     },
-    [theme.breakpoints.down('sm')]:{
-  
-    }
+    [theme.breakpoints.down("sm")]: {},
   },
-  confirmButton:{
+  confirmButton: {
     backgroundColor: "#4158D0",
     backgroundImage:
       "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)",
-   
+
     color: "white",
     fontFamily: "Raleway",
     fontWeight: 600,
   },
-  buttonContainer:{
-    marginTop:"2em"
-  }
+  buttonContainer: {
+    marginTop: "2em",
+  },
 }));
 
 const Contact = (props) => {
   const classes = useStyle();
 
   const [name, setName] = useState("");
-  const [nameHelper, setNameHelper] = useState("");
+  //const [nameHelper, setNameHelper] = useState("");
 
   const [email, setEmail] = useState("");
   const [emailHelper, setEmailHelper] = useState("");
@@ -109,9 +106,13 @@ const Contact = (props) => {
 
   const [message, setMessage] = useState("");
 
-  const [validation, setValidation] = useState(false);
+  //const [validation, setValidation] = useState(false);
 
   const [open, setOpen] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+
+  const [alert, setAlert] = useState({ open: false, message: "", color: "" });
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -150,6 +151,39 @@ const Contact = (props) => {
       default:
         break;
     }
+  };
+
+  const handleSend = async () => {
+    setLoading(true);
+   await axios.get("",{params: {
+         name:name,
+         email:email,
+         phone:phone,
+         message:message
+      }})
+      .then((res) => {
+        setName("");
+        setPhone("");
+        setEmail("");
+        setMessage("");
+
+        setLoading(false);
+        setOpen(false);
+        setAlert({
+          open: true,
+          message: "message sent successfuly",
+          color: "#32CD32",
+        });
+      })
+      .catch((err) => {
+        setLoading(false);
+        setAlert({
+          open: true,
+          message: "something went wrong, try again later",
+          color: "#FF0000",
+        });
+      
+      });
   };
 
   return (
@@ -282,50 +316,61 @@ const Contact = (props) => {
         </Grid>
       </Grid>
       <Dialog open={open} onClose={handleClose} className={classes.dialog}>
-      <DialogTitle ><Typography variant="h5">Confirm Informations</Typography></DialogTitle>
-      <Grid item direction="column" className={classes.dialogform} spacing={3}>
-            <Grid item>
-              <Typography>Name</Typography>
-              <Typography variant="subtitle1">{name}</Typography>
-            </Grid>
-            <Grid item>
+        <DialogTitle>
+          <Typography variant="h5">Confirm Informations</Typography>
+        </DialogTitle>
+        <Grid
+          item
+          direction="column"
+          className={classes.dialogform}
+          spacing={3}
+        >
+          <Grid item>
+            <Typography>Name</Typography>
+            <Typography variant="subtitle1">{name}</Typography>
+          </Grid>
+          <Grid item>
             <Typography>Email</Typography>
-              <Typography variant="subtitle1">{email}</Typography>
-            </Grid>
-            <Grid item>
+            <Typography variant="subtitle1">{email}</Typography>
+          </Grid>
+          <Grid item>
             <Typography>Phone</Typography>
-              <Typography variant="subtitle1">{phone}</Typography>
-            </Grid>
-            <Grid item>
+            <Typography variant="subtitle1">{phone}</Typography>
+          </Grid>
+          <Grid item>
             <Typography>Your inquiry</Typography>
-              <Typography variant="subtitle1" >{message}</Typography>
-            </Grid>
-            <Grid item container spacing={2} className={classes.buttonContainer}>
-              <Grid item md>
+            <Typography variant="subtitle1">{message}</Typography>
+          </Grid>
+          <Grid item container spacing={2} className={classes.buttonContainer}>
+            <Grid item md>
               <Button
-               className={classes.cancelButton}
+                className={classes.cancelButton}
                 variant="contained"
-                
                 onClick={handleClose}
               >
                 cancel
-                
               </Button>
-              </Grid>
-              <Grid item md>
+            </Grid>
+            <Grid item md>
               <Button
-              
                 variant="contained"
                 className={classes.confirmButton}
-                onClick={handleClickOpen}
+                onClick={handleSend}
               >
-                Confirm
-                {">"}
+                {loading ? <CircularProgress size={30} /> : " Confirm >"}
               </Button>
-              </Grid>
             </Grid>
           </Grid>
+        </Grid>
       </Dialog>
+      <Snackbar
+        open={alert.open}
+        message={alert.message}
+        ContentProps={{ style: { backgroundColor: alert.color } }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        onClose={()=>{setAlert({...alert,open:false})}}
+        autoHideDuration={4000}
+      />
     </React.Fragment>
   );
 };
