@@ -78,7 +78,8 @@ const useStyle= makeStyles(theme=>({
      ...theme.typography.button,
      marginLeft:"25px",
      marginRight:"50px",
-     borderRadius:"50px"
+     borderRadius:"50px",
+     fontFamily:"pacifico"
    },
    logoContainer:{
      padding:0

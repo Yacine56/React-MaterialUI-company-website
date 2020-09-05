@@ -155,7 +155,7 @@ const Contact = (props) => {
 
   const handleSend = async () => {
     setLoading(true);
-   await axios.get("",{params: {
+   await axios.get("https://us-central1-materialui-company.cloudfunctions.net/sendmail",{params: {
          name:name,
          email:email,
          phone:phone,
@@ -166,7 +166,7 @@ const Contact = (props) => {
         setPhone("");
         setEmail("");
         setMessage("");
-
+        console.log(res)
         setLoading(false);
         setOpen(false);
         setAlert({
@@ -182,7 +182,7 @@ const Contact = (props) => {
           message: "something went wrong, try again later",
           color: "#FF0000",
         });
-      
+        console.log(err);
       });
   };
 
@@ -278,15 +278,15 @@ const Contact = (props) => {
             </Grid>
             <Grid item>
               <Button
-                disabled={
-                  name.length === 0 ||
-                  phone.length === 0 ||
-                  emailHelper.length !== 0 ||
-                  email.length === 0 ||
-                  message.length === 0 ||
-                  phoneHelper.length !== 0 ||
-                  nameHelper.length !== 0
-                }
+                // disabled={
+                //   name.length === 0 ||
+                //   phone.length === 0 ||
+                //   emailHelper.length !== 0 ||
+                //   email.length === 0 ||
+                //   message.length === 0 ||
+                //   phoneHelper.length !== 0 ||
+                //   nameHelper.length !== 0
+                // }
                 variant="contained"
                 className={classes.sendButton}
                 onClick={handleClickOpen}

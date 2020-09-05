@@ -9,6 +9,7 @@ import LandingPage from './components/LandingPage'
 import Services from './components/services'
 import CustomSoftware from "./components/CustomSoftware"
 import Contact from './components/contact'
+import Estimate from './components/estimate'
 
 function App() {
     const [value ,setValue]=useState(0)
@@ -25,7 +26,7 @@ function App() {
      <Route exact path="/revolution" component={()=><div>Revolution</div>} /> 
      <Route exact path="/about-us" component={()=><div>about-us</div>} /> 
      <Route exact path="/contact-us" component={Contact} /> 
-     <Route exact path="/estimate" component={()=><div>Estimate</div>} /> 
+     <Route exact path="/estimate" component={Estimate} /> 
      </Switch> 
     <Footer value={value} setValue={setValue} />
 
